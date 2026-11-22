@@ -1466,8 +1466,16 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
                                     && isWrapFlingMove(Math.abs(wrapOverscroll), pageOrientedSize))
                             : isSignificantMove(Math.abs(wrapOverscroll), pageOrientedSize));
                     // Trace the decision for releases past an end, to help tune the threshold
-                    if (wrapOverscroll != 0) {
-                        Log.d(TAG, "wrap decision: wrap=" + wrap + " isFling=" + isFling
+                    // OLD: if (wrapOverscroll != 0) {
+                    // note: now traced for every release, along with whether wrapping is possible
+                    {
+                        Log.d(TAG, "wrap decision: wrap=" + wrap
+                                + " page=" + mCurrentPage + "/" + getChildCount()
+                                + " canWrapMin=" + canWrapPastEnd(false)
+                                + " canWrapMax=" + canWrapPastEnd(true)
+                                + " scroll=" + mOrientationHandler.getPrimaryScroll(this)
+                                + " range=[" + mMinScroll + "," + mMaxScroll + "]"
+                                + " isFling=" + isFling
                                 + " velocity=" + velocity + " wrapOverscroll=" + wrapOverscroll
                                 + " flingThreshold=" + (pageOrientedSize * WRAP_FLING_THRESHOLD)
                                 + " dragThreshold=" + (pageOrientedSize * SIGNIFICANT_MOVE_THRESHOLD)
