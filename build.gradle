@@ -324,6 +324,13 @@ android {
             res.srcDirs = ["nightly/res"]
         }
 
+        // Debug builds get a version badge on the launcher icon (see debug/res), so that they
+        // can be told apart from a release installed alongside.
+        // (Added with the help of Claude Code using model claude-fable-5-2.)
+        debug {
+            res.srcDirs = ["debug/res"]
+        }
+
         lawnWithQuickstepGithub {
             manifest.srcFile "quickstep/AndroidManifest-launcher.xml"
         }

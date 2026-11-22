@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Launcher icon foreground for debug builds: the regular foreground with a version badge on top.
+  Added with the help of Claude Code using model claude-fable-5-2.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap android:src="@mipmap/ic_launcher_home_foreground" />
+    </item>
+    <item android:drawable="@drawable/ic_launcher_home_version_badge" />
+</layer-list>
