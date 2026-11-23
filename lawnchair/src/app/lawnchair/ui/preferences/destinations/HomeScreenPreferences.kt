@@ -109,11 +109,29 @@ fun HomeScreenPreferences(
                 adapter = prefs2.doubleTapGestureHandler.getAdapter(),
                 label = stringResource(id = R.string.gesture_double_tap),
             )
+            // OLD:
+            // SwitchPreference(
+            //     prefs.infiniteScrolling.getAdapter(),
+            //     label = stringResource(id = R.string.infinite_scrolling_label),
+            //     description = stringResource(id = R.string.infinite_scrolling_description),
+            // )
+            // Infinite scrolling, along with how far a swipe must go past the edge to loop
+            // (resistance added with the help of Claude Code using model claude-fable-5-2)
+            val infiniteScrollingAdapter = prefs.infiniteScrolling.getAdapter()
             SwitchPreference(
-                prefs.infiniteScrolling.getAdapter(),
+                infiniteScrollingAdapter,
                 label = stringResource(id = R.string.infinite_scrolling_label),
                 description = stringResource(id = R.string.infinite_scrolling_description),
             )
+            ExpandAndShrink(visible = infiniteScrollingAdapter.state.value) {
+                SliderPreference(
+                    adapter = prefs.infiniteScrollingResistance.getAdapter(),
+                    label = stringResource(id = R.string.infinite_scrolling_resistance_label),
+                    valueRange = 0f..0.5f,
+                    step = 0.05f,
+                    showAsPercentage = true,
+                )
+            }
         }
         if (hasMotionSensor) {
             PreferenceGroup {

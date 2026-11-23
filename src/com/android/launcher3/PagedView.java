@@ -86,7 +86,9 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
     // LC-Note: Resistance for infinite scrolling: a fling past the first or last page must have
     // dragged at least this fraction of the page to wrap around; shorter swipes settle back.
     // (Added with the help of Claude Code using model claude-fable-5-2.)
-    private static final float WRAP_FLING_THRESHOLD = 0.25f;
+    // OLD: private static final float WRAP_FLING_THRESHOLD = 0.25f;
+    // note: this is now just the default (see getWrapFlingThreshold)
+    protected static final float WRAP_FLING_THRESHOLD = 0.25f;
 
     private static final float MAX_SCROLL_PROGRESS = 1.0f;
 
@@ -1287,7 +1289,16 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
 
     /** LC-Note: Whether a fling went far enough past the first or last page to wrap around. */
     protected boolean isWrapFlingMove(float absoluteOverscroll, int pageOrientedSize) {
-        return absoluteOverscroll > pageOrientedSize * WRAP_FLING_THRESHOLD;
+        // OLD: return absoluteOverscroll > pageOrientedSize * WRAP_FLING_THRESHOLD;
+        return absoluteOverscroll > pageOrientedSize * getWrapFlingThreshold();
+    }
+
+    /**
+     * LC-Note: Fraction of the page a fling must be dragged past the first or last page to wrap
+     * around; subclasses can make this configurable.
+     */
+    protected float getWrapFlingThreshold() {
+        return WRAP_FLING_THRESHOLD;
     }
 
     @Override
@@ -1477,7 +1488,8 @@ public abstract class PagedView<T extends View & PageIndicator> extends ViewGrou
                                 + " range=[" + mMinScroll + "," + mMaxScroll + "]"
                                 + " isFling=" + isFling
                                 + " velocity=" + velocity + " wrapOverscroll=" + wrapOverscroll
-                                + " flingThreshold=" + (pageOrientedSize * WRAP_FLING_THRESHOLD)
+                                // OLD: + " flingThreshold=" + (pageOrientedSize * WRAP_FLING_THRESHOLD)
+                                + " flingThreshold=" + (pageOrientedSize * getWrapFlingThreshold())
                                 + " dragThreshold=" + (pageOrientedSize * SIGNIFICANT_MOVE_THRESHOLD)
                                 + " returnToOriginalPage=" + returnToOriginalPage);
                     }

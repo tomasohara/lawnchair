@@ -12,7 +12,7 @@
     android:viewportHeight="108">
     <!-- Badge background -->
     <path
-        android:fillColor="#D32F2F"
+        android:fillColor="#00838F"
         android:strokeColor="#FFFFFF"
         android:strokeWidth="1.5"
         android:pathData="M45,60 L63,60 A11,11 0 0,1 63,82 L45,82 A11,11 0 0,1 45,60 Z" />

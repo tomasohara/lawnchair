@@ -132,6 +132,10 @@ class PreferenceManager @Inject constructor(
     val autoLaunchRoot = BoolPref("pref_autoLaunchRoot", false)
     val wallpaperScrolling = BoolPref("pref_wallpaperScrolling", true)
     val infiniteScrolling = BoolPref("pref_infiniteScrolling", false)
+
+    // Fraction of the page a fling must be dragged past the first or last page to wrap around
+    // (added with the help of Claude Code using model claude-fable-5-2)
+    val infiniteScrollingResistance = FloatPref("pref_infiniteScrollingResistance", 0.25f)
     val enableDebugMenu = BoolPref("pref_enableDebugMenu", false)
     val vibrationFeedbackLevel: IntPref = IntPref(
         "pref_vibrationFeedbackLevel",

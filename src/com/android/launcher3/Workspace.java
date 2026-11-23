@@ -1545,6 +1545,13 @@ public class Workspace<T extends View & PageIndicator> extends PagedView<T>
                 || !PreferenceCacheExtensionsKt.firstCached(mPreferenceManager2.getEnableFeed());
     }
 
+    // LC-Note: The resistance to wrapping around is user configurable.
+    // (Added with the help of Claude Code using model claude-fable-5-2.)
+    @Override
+    protected float getWrapFlingThreshold() {
+        return mPreferenceManger.getInfiniteScrollingResistance().get();
+    }
+
     @Override
     protected boolean shouldFlingForVelocity(int velocityX) {
         // When the overlay is moving, the fling or settle transition is controlled by the overlay.
