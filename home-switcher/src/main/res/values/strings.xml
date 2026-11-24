@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Home switcher</string>
+    <string name="switched_to">Home app: %1$s</string>
+    <string name="switch_failed">Could not switch home app: %1$s</string>
+    <string name="need_two_launchers">Need two Lawnchair builds installed to switch</string>
+    <string name="shizuku_unavailable">Shizuku is not running: choose the home app manually</string>
+    <string name="shizuku_denied">Shizuku permission denied: choose the home app manually</string>
+</resources>

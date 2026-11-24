@@ -118,3 +118,7 @@ include ':concurrent'
 //include ':compose'
 include ':modules:widgetpicker'
 
+// Development aid for switching the default home app between Lawnchair builds
+// (added with the help of Claude Code using model claude-fable-5-2)
+include ':home-switcher'
+

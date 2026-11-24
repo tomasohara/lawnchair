@@ -1,0 +1,33 @@
+// Home switcher: small companion app that toggles the default home app between the installed
+// Lawnchair builds (e.g., release and debug). See README.md for the setup.
+// Note: This is a development aid, which is not part of the launcher itself.
+// Created with the help of Claude Code using model claude-fable-5-2.
+
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+// Version of the Shizuku client library (see https://github.com/RikkaApps/Shizuku-API)
+// note: kept here rather than in the version catalog to minimize differences from upstream
+def shizukuVersion = "13.1.5"
+
+android {
+    namespace "app.lawnchair.homeswitcher"
+
+    defaultConfig {
+        applicationId "app.lawnchair.homeswitcher"
+        versionCode 1
+        versionName "0.1"
+    }
+
+    buildFeatures {
+        aidl true
+    }
+}
+
+dependencies {
+    implementation "dev.rikka.shizuku:api:$shizukuVersion"
+    implementation "dev.rikka.shizuku:provider:$shizukuVersion"
+
+    testImplementation libs.junit
+}
